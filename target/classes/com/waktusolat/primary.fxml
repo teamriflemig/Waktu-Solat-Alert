@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.waktusolat.PrimaryController" 
+      alignment="TOP_CENTER" stylesheets="@styles.css" styleClass="main-container">
+    
+    <!-- Top Section: Logo, Digital Clock and Date -->
+    <HBox alignment="CENTER" styleClass="clock-container" spacing="15">
+        <Region HBox.hgrow="ALWAYS" />
+        <ImageView fx:id="logoView" fitHeight="45" preserveRatio="true">
+            <image>
+                <Image url="@Logo.png" />
+            </image>
+        </ImageView>
+        <VBox alignment="CENTER_LEFT">
+            <Label fx:id="timeLabel" text="00:00:00" styleClass="time-label"/>
+            <Label fx:id="dateLabel" text="Monday, 1 Jan 2026" styleClass="date-label"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#testAzan" styleClass="icon-btn" text="🔊">
+             <tooltip><Tooltip text="Test Azan / Stop Azan" /></tooltip>
+        </Button>
+    </HBox>
+
+    <!-- Zone Selection Section -->
+    <HBox alignment="CENTER" spacing="5" styleClass="selection-container">
+        <ComboBox fx:id="stateComboBox" promptText="State" prefWidth="120" styleClass="compact-combo"/>
+        <ComboBox fx:id="zoneComboBox" promptText="Zone" prefWidth="150" styleClass="compact-combo"/>
+    </HBox>
+
+    <Separator prefWidth="200.0" />
+
+    <!-- Bottom Section: Current and Next Prayer -->
+    <HBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS" styleClass="prayer-info-container">
+        <!-- Current Prayer -->
+        <VBox alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="prayer-box">
+            <Label text="CURRENT" styleClass="sub-label"/>
+            <Label fx:id="currentPrayerName" text="Zohor" styleClass="prayer-name"/>
+            <Label fx:id="currentPrayerTime" text="1:15 PM" styleClass="prayer-time-small"/>
+            <Label fx:id="currentPrayerStatus" text="Ends in 01:45" styleClass="status-label"/>
+        </VBox>
+
+        <Separator orientation="VERTICAL" />
+
+        <!-- Next Prayer -->
+        <VBox alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="prayer-box">
+            <Label text="NEXT" styleClass="sub-label"/>
+            <Label fx:id="nextPrayerName" text="Asar" styleClass="prayer-name"/>
+            <Label fx:id="nextPrayerTime" text="4:30 PM" styleClass="prayer-time-small"/>
+            <Label fx:id="nextPrayerCountdown" text="in 01:20" styleClass="countdown-label"/>
+            <Button fx:id="stopAzanBtn" text="Stop Azan" visible="false" managed="false" onAction="#stopAzan" styleClass="stop-btn"/>
+        </VBox>
+    </HBox>
+
+    <padding>
+        <Insets top="10" right="20" bottom="10" left="20"/>
+    </padding>
+</VBox>
